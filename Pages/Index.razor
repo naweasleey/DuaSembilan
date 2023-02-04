@@ -1,0 +1,108 @@
+﻿@page "/"
+@using DuaSembilan.Models;
+
+<PageTitle>Index</PageTitle>
+
+@*@foreach(var kartu in listRemi)
+{
+    <h1>@kartu.KartuName</h1>
+}*@
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <button onclick="@Addsneaker"class="btn btn-primary">Tambah  Sneaker</button>
+                <button onlick="@Addsandal"class="btn btn-success">Tambah Sandal</button>
+                <button onlick="@Addsepatukulit"class="btn btn-warning">Tambah Sepatu Kulit</button>
+                <button onclick="@Addpantofel"class="btn btn-danger">Tambah Pantofel</button>
+            </div>
+        </div>
+    </div>
+  <div class="col-6">
+    <div class="card">
+        <div class="card-body">
+            <h3>Rak Sepatu</h3>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Sepatu</th>
+                    <th>Aksi</th>
+                </tr>
+                    @foreach(var sepatu in listsepatu)
+                    {
+                    <tr>
+                        <td>@sepatu.JenisSepatu</td>
+                        <td>
+                            <button @onclick="() => hapus(sepatu)" type="button" class="btn">Hapus</button>
+                       </td>
+                </tr>
+                    }
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+
+@code{
+    //KartuRemi asSekop;
+    //int angka = 0;
+    //string angkaS = "";
+
+    /*protected override void OnInitialized()
+        {
+        asSekop = new KartuRemi(KembangRemi.Sekop, AngkaRemi.As); //cara memakai konstruktor
+        angka = (int)asSekop.Angka; //casting
+        angkaS = asSekop.Angka.ToString();
+
+    }*/
+
+    //List<KartuRemi> listRemi;
+    List<Sepatu> listsepatu;
+
+    protected override void OnInitialized()
+    {
+        listsepatu = new List<Sepatu>();
+
+        /* listRemi = new List<KartuRemi>();
+        listRemi.Add(new KartuRemi(KembangRemi.Tempe, AngkaRemi.As));
+        listRemi.Add(new KartuRemi(KembangRemi.Lope, AngkaRemi.As));
+
+        KartuRemi asKeriting = new KartuRemi(KembangRemi.Keriting, AngkaRemi.As);
+        listRemi.Add(asKeriting);
+
+        int indexAsKeriting = listRemi.IndexOf(asKeriting);
+        bool addAsKeriting = listRemi.Contains(asKeriting);
+
+        listRemi.Remove(asKeriting); */
+
+    }
+
+    //langkah ketiga membuat method
+    //untuk nambah data 
+    public void Addsneaker()
+    {
+        listsepatu.Add(new Sepatu(JenisSepatu.Sneaker));
+    }
+
+    public void Addsandal()
+    {
+        listsepatu.Add(new Sepatu(JenisSepatu.Sandal));
+    }
+
+    public void Addsepatukulit()
+    {
+        listsepatu.Add(new Sepatu(JenisSepatu.SepatuKulit));
+    }
+
+    public void Addpantofel()
+    {
+        listsepatu.Add(new Sepatu(JenisSepatu.Pantofel));
+    }
+
+    public void hapus(Sepatu sepatu)
+    {
+        listsepatu.Remove(sepatu);
+    }
+}  
+
